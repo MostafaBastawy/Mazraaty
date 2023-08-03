@@ -8,7 +8,7 @@ import 'package:mazraaty/modules/favourites_screen.dart';
 import 'package:mazraaty/modules/notifications_screen.dart';
 import 'package:mazraaty/modules/settings_screen.dart';
 import 'package:mazraaty/shared/constants.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../modules/add_place_screen.dart';
 import '../modules/home_screen.dart';

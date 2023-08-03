@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mazraaty/models/notifications_model.dart';
 import 'package:mazraaty/models/sliders_model.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../models/home_model.dart';
 import '../../networks/local/cache_helper.dart';
