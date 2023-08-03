@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "787557202776",
+    "project_id": "mazrati-97d26",
+    "storage_bucket": "mazrati-97d26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787557202776:android:1f1855bc832e1177cb032d",
+        "android_client_info": {
+          "package_name": "com.metafortech.stayat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787557202776-riof7l768tonvpmvb24dkeel1agq6udf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnPZupiOC-odP8j9VkBk5zWPPFj21Fisw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787557202776-riof7l768tonvpmvb24dkeel1agq6udf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
