@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final token = CacheHelper.getData("userToken");
     return Scaffold(
-        appBar: customAppbar(context: context, title: "mazraaty".tr()),
+        appBar: customAppbar(context: context, title: "Stayat"),
         body: BlocBuilder<HomeCubit, HomeStates>(
           builder: (context, state) {
             if (HomeCubit.get(context).homeModel != null) {
@@ -197,7 +197,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(
                             height: 20,
                           ),
-                          Text("latestAdditions".tr(),),
+                          Text(
+                            "latestAdditions".tr(),
+                          ),
                           ListView.separated(
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),

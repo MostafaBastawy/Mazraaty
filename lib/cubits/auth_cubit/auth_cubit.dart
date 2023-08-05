@@ -1,7 +1,7 @@
-
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../networks/local/cache_helper.dart';
 import '../../networks/remote/dio_helper.dart';
 import 'auth_states.dart';
@@ -9,8 +9,6 @@ import 'auth_states.dart';
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
   static AuthCubit get(context) => BlocProvider.of(context);
-
-
 
   // Future<dynamic> checkUserExist(String mobile) async {
   //   emit(CheckUserExistLoadingState());
@@ -23,15 +21,13 @@ class AuthCubit extends Cubit<AuthStates> {
   //    return result.data;
   // }
 
-  Future<dynamic> userLogin(String phone,String password) async {
+  Future<dynamic> userLogin(String phone, String password) async {
     emit(UserLoginLoadingState());
-    FormData formData = FormData.fromMap({
-      "phone" : phone,
-      "password" : password
-    });
-    var result = await DioHelper.postData(url: "login",data: formData);
+    FormData formData =
+        FormData.fromMap({"phone": phone, "password": password});
+    var result = await DioHelper.postData(url: "login", data: formData);
     print(result.data);
-    if(result.data["status"]){
+    if (result.data["status"]) {
       await CacheHelper.setData("userToken", result.data["data"]["api_token"]);
       await CacheHelper.setData("userName", result.data["data"]["name"]);
       await CacheHelper.setData("userPhone", result.data["data"]["phone"]);
@@ -42,23 +38,22 @@ class AuthCubit extends Cubit<AuthStates> {
     return result.data;
   }
 
-  Future<String?> getDeviceToken() async{
+  Future<String?> getDeviceToken() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     return await messaging.getToken();
   }
 
-
-
-  Future<dynamic> userRegister(String phone,String password,String name) async {
+  Future<dynamic> userRegister(
+      String phone, String password, String name) async {
     emit(UserRegisterLoadingState());
     FormData formData = FormData.fromMap({
-      "phone" : phone,
-      "password" : password,
-      "name" : name,
+      "phone": phone,
+      "password": password,
+      "name": name,
     });
-    var result = await DioHelper.postData(url: "signup",data: formData);
+    var result = await DioHelper.postData(url: "signup", data: formData);
     print(result.data);
-    if(result.data["status"]){
+    if (result.data["status"]) {
       await CacheHelper.setData("userToken", result.data["data"]["api_token"]);
       await CacheHelper.setData("userName", result.data["data"]["name"]);
       await CacheHelper.setData("userPhone", result.data["data"]["phone"]);
@@ -73,15 +68,15 @@ class AuthCubit extends Cubit<AuthStates> {
     String? token = await getDeviceToken();
     print(token);
     FormData formData = FormData.fromMap({
-      "fcm_token" : token,
+      "fcm_token": token,
     });
-    var result = await DioHelper.postData(url: "fcm-token",data: formData,header: {
-      "Authorization" : "Bearer ${CacheHelper.getData("userToken")}",
+    var result =
+        await DioHelper.postData(url: "fcm-token", data: formData, header: {
+      "Authorization": "Bearer ${CacheHelper.getData("userToken")}",
     });
     emit(SendDeviceTokenSuccessState());
     return result.data;
   }
-
 
   // Future<dynamic> userSocialLogin(String name, String providerId, String provider) async {
   //   emit(UserSocialLoginLoadingState());
@@ -102,8 +97,6 @@ class AuthCubit extends Cubit<AuthStates> {
   //   return result.data;
   // }
 
-
-
   // Future<dynamic> changePassword(String oldPassword,String newPassword,String confirmPassword) async {
   //   emit(ChangePasswordLoadingState());
   //   FormData formData = FormData.fromMap({
@@ -117,8 +110,6 @@ class AuthCubit extends Cubit<AuthStates> {
   //   emit(ChangePasswordSuccessState());
   //   return result.data;
   // }
-
-
 
   // Future<dynamic> resetPassword(String phoneNumber,String newPassword,String confirmPassword,String code) async {
   //   emit(ResetPasswordLoadingState());
@@ -189,13 +180,21 @@ class AuthCubit extends Cubit<AuthStates> {
   //   }
   // }
 
-  Future<dynamic> logout() async{
-    var response = await DioHelper.getData(url: "logout",header: {
-      "Authorization" : "Bearer ${CacheHelper.getData("userToken")}",
+  Future<dynamic> logout() async {
+    var response = await DioHelper.getData(url: "logout", header: {
+      "Authorization": "Bearer ${CacheHelper.getData("userToken")}",
     });
     CacheHelper.removeData("userToken");
     print(response.data);
     return response.data;
   }
 
+  Future<dynamic> deleteAccount() async {
+    var response = await DioHelper.getData(url: "delete-account", header: {
+      "Authorization": "Bearer ${CacheHelper.getData("userToken")}",
+    });
+    CacheHelper.removeData("userToken");
+    print(response.data);
+    return response.data;
+  }
 }

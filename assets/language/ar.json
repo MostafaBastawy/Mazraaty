@@ -87,5 +87,8 @@
   "price": "السعر",
   "skipLogin": "الدخول كضيف",
   "mostBooked": "الأكثر حجزا",
-  "addRate": "اضافة تقييم"
+  "addRate": "اضافة تقييم",
+  "deleteAccount": "حذف الحساب",
+  "areYouSureWantToDeleteYourAccount": "هل انت متأكد انك تريد حذف الحساب؟",
+  "confirm": "تأكيد"
 }

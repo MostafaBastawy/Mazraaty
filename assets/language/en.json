@@ -87,5 +87,9 @@
   "price": "Price",
   "skipLogin": "skip login",
   "mostBooked": "Most booked",
-  "addRate": "add rate"
+  "addRate": "add rate",
+  "deleteAccount": "Delete Account",
+  "areYouSureWantToDeleteYourAccount": "Are you sure want to delete your account?",
+  "confirm": "Confirm"
+
 }

@@ -55,6 +55,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        ndkVersion "25.1.8937393"
     }
     signingConfigs {
         release {

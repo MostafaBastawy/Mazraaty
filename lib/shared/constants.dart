@@ -8,6 +8,6 @@ const authBackgroundColor = Color(0xffF2F2F2);
 const Color lightBgGrey = Color(0xfff4f8ff);
 const highlightColor = Color(0xFFFDF9F9);
 
-const String baseUrl = "https://mazrati.metafortech.com/api/";
+const String baseUrl = "https://stayat.website/api/";
 
 String lang = CacheHelper.getData("userLang") ?? "ar";
