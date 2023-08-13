@@ -46,11 +46,14 @@
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
-		<string>nb</string>
+		<string>ar</string>
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>This identifier will be used to access your gallery to upload post images</string>
+
 </dict>
 </plist>

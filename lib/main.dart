@@ -21,11 +21,12 @@ import 'networks/local/cache_helper.dart';
 import 'networks/remote/dio_helper.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  await WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await CacheHelper.init();
   await EasyLocalization.ensureInitialized();
-  DioHelper.init();
+  await DioHelper.init();
+  Bloc.observer = MyBlocObserver();
   ErrorWidget.builder = ((details) {
     return Material(
       child: Container(
@@ -57,27 +58,24 @@ void main() async {
     statusBarIconBrightness: Brightness.light,
   ));
 
-  BlocOverrides.runZoned(
-    () => runApp(
-      EasyLocalization(
-        path: "assets/language",
-        saveLocale: true,
-        startLocale: Locale(
-          'ar',
-        ),
-        fallbackLocale: Locale(
-          'en',
-        ),
-        supportedLocales: [
-          const Locale('en', ''),
-          const Locale('ar', ''),
-        ],
-        child: Phoenix(
-          child: MyApp(),
-        ),
+  runApp(
+    EasyLocalization(
+      path: "assets/language",
+      saveLocale: true,
+      startLocale: Locale(
+        'ar',
+      ),
+      fallbackLocale: Locale(
+        'en',
+      ),
+      supportedLocales: [
+        const Locale('en', ''),
+        const Locale('ar', ''),
+      ],
+      child: Phoenix(
+        child: MyApp(),
       ),
     ),
-    blocObserver: MyBlocObserver(),
   );
 }
 

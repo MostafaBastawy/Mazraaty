@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mazraaty/modules/auth_screens/register_screen.dart';
+import 'package:mazraaty/networks/local/cache_helper.dart';
 
 import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../cubits/auth_cubit/auth_states.dart';
@@ -64,10 +64,13 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () async {
                     var result = await AuthCubit.get(context).userLogin(
                         phoneController.text, passwordController.text);
-                    if (result["status"]) {
+                    final String? userToken =
+                        await CacheHelper.getData("userToken");
+
+                    if (userToken != null) {
                       navigateAndFinish(context, HomeLayout());
                     } else {
-                      showToast(result["msg"]);
+                      showToast(result.data["msg"]);
                     }
                   },
                   text: "login".tr(),
