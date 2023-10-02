@@ -54,6 +54,11 @@
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>This identifier will be used to access your gallery to upload post images</string>
-
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tel</string>
+		<string>https</string>
+		<string>whatsapp</string>
+	</array>
 </dict>
 </plist>

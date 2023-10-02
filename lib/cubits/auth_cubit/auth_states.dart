@@ -10,6 +10,13 @@ class UserLoginLoadingState extends AuthStates {}
 
 class UserLoginSuccessState extends AuthStates {}
 
+class UserLoginErrorState extends AuthStates {
+  UserLoginErrorState({
+    required this.message,
+  });
+  final String message;
+}
+
 class UserRegisterLoadingState extends AuthStates {}
 
 class UserRegisterSuccessState extends AuthStates {}
@@ -45,4 +52,3 @@ class ResetPasswordSuccessState extends AuthStates {}
 class ChangeGenderSuccessState extends AuthStates {}
 
 class ChangeBirthDateSuccessState extends AuthStates {}
-

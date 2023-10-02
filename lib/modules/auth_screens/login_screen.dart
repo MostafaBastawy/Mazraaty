@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mazraaty/modules/auth_screens/register_screen.dart';
-import 'package:mazraaty/networks/local/cache_helper.dart';
 
 import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../cubits/auth_cubit/auth_states.dart';
@@ -58,28 +57,29 @@ class LoginScreen extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            BlocBuilder<AuthCubit, AuthStates>(builder: (context, state) {
-              if (state is! UserLoginLoadingState) {
-                return CustomButton(
-                  onPressed: () async {
-                    var result = await AuthCubit.get(context).userLogin(
-                        phoneController.text, passwordController.text);
-                    final String? userToken =
-                        await CacheHelper.getData("userToken");
-
-                    if (userToken != null) {
-                      navigateAndFinish(context, HomeLayout());
-                    } else {
-                      showToast(result.data["msg"]);
-                    }
-                  },
-                  text: "login".tr(),
-                  textColor: Colors.white,
-                );
-              } else {
-                return customCircleProgressIndicator();
-              }
-            }),
+            BlocConsumer<AuthCubit, AuthStates>(
+              listener: (context, state) {
+                if (state is UserLoginSuccessState) {
+                  navigateAndFinish(context, HomeLayout());
+                } else if (state is UserLoginErrorState) {
+                  showToast(state.message);
+                }
+              },
+              builder: (context, state) {
+                if (state is! UserLoginLoadingState) {
+                  return CustomButton(
+                    onPressed: () async {
+                      await AuthCubit.get(context).userLogin(
+                          phoneController.text, passwordController.text);
+                    },
+                    text: "login".tr(),
+                    textColor: Colors.white,
+                  );
+                } else {
+                  return customCircleProgressIndicator();
+                }
+              },
+            ),
             SizedBox(
               height: 10,
             ),

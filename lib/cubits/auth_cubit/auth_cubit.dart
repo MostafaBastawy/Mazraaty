@@ -21,21 +21,22 @@ class AuthCubit extends Cubit<AuthStates> {
   //    return result.data;
   // }
 
-  Future<dynamic> userLogin(String phone, String password) async {
+  Future<void> userLogin(String phone, String password) async {
     emit(UserLoginLoadingState());
     FormData formData =
         FormData.fromMap({"phone": phone, "password": password});
-    var result = await DioHelper.postData(url: "login", data: formData);
+    final Response result =
+        await DioHelper.postData(url: "login", data: formData);
     print(result.data);
     if (result.data["status"]) {
       await CacheHelper.setData("userToken", result.data["data"]["api_token"]);
       await CacheHelper.setData("userName", result.data["data"]["name"]);
       await CacheHelper.setData("userPhone", result.data["data"]["phone"]);
+      emit(UserLoginSuccessState());
       await sendDeviceToken();
+    } else {
+      emit(UserLoginErrorState(message: result.data["msg"]));
     }
-
-    emit(UserLoginSuccessState());
-    return result.data;
   }
 
   Future<String?> getDeviceToken() async {

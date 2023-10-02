@@ -90,5 +90,6 @@
   "addRate": "اضافة تقييم",
   "deleteAccount": "حذف الحساب",
   "areYouSureWantToDeleteYourAccount": "هل انت متأكد انك تريد حذف الحساب؟",
-  "confirm": "تأكيد"
+  "confirm": "تأكيد",
+  "comment": "إضافة تعليق"
 }

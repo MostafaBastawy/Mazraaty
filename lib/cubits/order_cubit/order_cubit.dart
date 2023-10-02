@@ -48,7 +48,7 @@ class OrderCubit extends Cubit<OrderStates> {
       "lang": lang,
     });
     paymentModel = PaymentModel.fromJson(response.data);
-    print(response.data);
+    print('Mostafaaa: ${response.data}');
     emit(GetPaymentDataSuccessState());
     return response.data;
   }

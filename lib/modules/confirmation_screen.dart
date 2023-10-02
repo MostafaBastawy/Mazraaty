@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mazraaty/cubits/order_cubit/order_states.dart';
 import 'package:mazraaty/shared/custom_button.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../cubits/order_cubit/order_cubit.dart';
 import '../shared/components.dart';
@@ -62,9 +63,11 @@ class ConfirmationScreen extends StatelessWidget {
                 height: 20,
               ),
               InkWell(
-                onTap: () {
-                  launchWhatsApp(
-                      OrderCubit.get(context).paymentModel!.data!.whatsApp!);
+                onTap: () async {
+                  await launchUrlString(
+                    'https://wa.me/962795030373',
+                    mode: LaunchMode.externalApplication,
+                  );
                 },
                 child: Container(
                     width: double.maxFinite,
